@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-// импорт компонента App
-import { App } from './components/app/app.component';
+// import App components
+import { App } from './components/app';
 
-// обработка компонента App и помещение результата в HTML элемент '#app'
+// compile App component in `#app` HTML element
 ReactDOM.render( <BrowserRouter><App/></BrowserRouter>, document.getElementById( 'app' ) );

@@ -7,15 +7,18 @@ const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
 module.exports = {
 
-    // режим webpack оптимизации
+    // webpack optimizations mode
+
     mode: ( 'development' === process.env.NODE_ENV ? 'development' : 'production' ),
 
-    // начальные файлы
-    entry: [
-        './src/index.js', // react
+    // entry files
+    entry: 'development' === process.env.NODE_ENV ? [
+        './src/index.dev.js', // in development
+    ] : [
+        './src/index.prod.js', // in production
     ],
 
-    // выходные файлы и чанки
+    // output files and chunks
     output: {
         path: path.resolve( __dirname, 'dist' ),
         filename: 'build/[name].js',
@@ -36,22 +39,22 @@ module.exports = {
         ]
     },
 
-    // webpack плагины
+    // webpack plugins
     plugins: [
 
-        // выделение css во внешний файл таблицы стилей
+        // extract css to external stylesheet file
         new MiniCssExtractPlugin( {
             filename: 'build/styles.css'
         } ),
 
-        // подготовка HTML файла с ресурсами
+        // prepare HTML file with assets
         new HTMLWebpackPlugin( {
             filename: 'index.html',
             template: path.resolve( __dirname, 'src/index.html' ),
             minify: false,
         } ),
 
-        // копирование статических файлов из `src` в `dist`
+        // copy static files from `src` to `dist`
         new CopyWebpackPlugin( {
             patterns: [
                 {
@@ -62,14 +65,14 @@ module.exports = {
         } ),
     ],
 
-    // настройка распознавания файлов
+    // resolve files configuration
     resolve: {
 
-        // расширения файлов
+        // file extensions
         extensions: [ '.js', '.jsx', '.scss' ],
     },
 
-    // webpack оптимизации
+    // webpack optimizations
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -78,20 +81,20 @@ module.exports = {
 
                 vendor: {
                     chunks: 'all', // both : consider sync + async chunks for evaluation
-                    name: 'vendor', // имя чанк-файла
+                    name: 'vendor', // name of chunk file
                     test: /node_modules/, // test regular expression
                 }
             }
         }
     },
 
-    // настройки сервера разработки
+    // development server configuration
     devServer: {
         port: 8088,
         historyApiFallback: true,
     },
 
-    // генерировать source map
+    // generate source map
     devtool: 'source-map'
 
 };

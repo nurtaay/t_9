@@ -1,53 +1,55 @@
 import React from 'react';
 import { NavLink as Link, Switch, Route } from 'react-router-dom';
-// импорт дочерних компонентов
+
+// import child components
 import { Counter } from '../counter';
 import { Post } from '../post';
-// экспорт главного компонента приложения
+
+// export entry application component
 export class App extends React.Component {
     constructor() {
         console.log( 'App.constructor()' );
         super();
     }
-// рендер представления
+
+    // render view
     render() {
         console.log( 'App.render()' );
 
         return (
-            &lt;div className='ui-app'&gt;
-            {/* navigation */}
-            &lt;div className='ui-app__navigation'&gt;
-            &lt;Link
-        className='ui-app__navigation__link'
-        activeClassName='ui-app__navigation__link--active'
-        to='/'
-        exact={ true }
-            &gt;Counter&lt;/Link&gt;
+            <div className='ui-app'>
+                {/* navigation */}
+                <div className='ui-app__navigation'>
+                    <Link
+                        className='ui-app__navigation__link'
+                        activeClassName='ui-app__navigation__link--active'
+                        to='/'
+                        exact={ true }
+                    >Counter</Link>
 
-            &lt;Link
-        className='ui-app__navigation__link'
-        activeClassName='ui-app__navigation__link--active'
-        to='/post'
-        exact={ true }
-            &gt;Post&lt;/Link&gt;
-            &lt;/div&gt;
+                    <Link
+                        className='ui-app__navigation__link'
+                        activeClassName='ui-app__navigation__link--active'
+                        to='/post'
+                        exact={ true }
+                    >Post</Link>
+                </div>
 
-            &lt;Switch&gt;
-            &lt;Route
-        path='/'
-        exact={ true }
-        render={ () =&gt; &lt;Counter name='Monica Geller'/&gt; }
-        /&gt;
+                <Switch>
+                    <Route
+                        path='/'
+                        exact={ true }
+                        render={ () => <Counter name='Monica Geller'/> }
+                    />
 
-        &lt;Route
-        path='/post'
-        exact={ true }
-        component={ Post }
-        /&gt;
-        &lt;/Switch&gt;
-
-        &lt;/div&gt;
-    );
+                    <Route
+                        path='/post'
+                        exact={ true }
+                        component={ Post }
+                    />
+                </Switch>
+                
+            </div>
+        );
     }
-
 }

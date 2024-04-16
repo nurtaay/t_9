@@ -1,12 +1,12 @@
 const path = require( 'path' );
 
-// игнорируем импорты `.scss`
+// ignore `.scss` imports
 require( 'ignore-styles' );
 
-// транспилируем на лету импорты
+// transpile imports on the fly
 require( '@babel/register')( {
     configFile: path.resolve( __dirname, '../babel.config.js' ),
 } );
 
-// импортируем express-сервер
+// import express server
 require( './express.js' );
