@@ -1,5 +1,5 @@
-const { Counter } = require( '../src/components/counter' );
-const { Post } = require( '../src/components/post' );
+const { Counter } = require('../src/components/counter');
+const { Post } = require('../src/components/post');
 
 module.exports = [
     {
